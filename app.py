@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = "w^dr8@O4IiR7"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URL'] = "postgres://etrdaefwshxfkb:16d8d6f38f1b3021b4c5b833cb2e2d4407d2ec91acb560174386c9782867c6d4@ec2-52-86-73-86.compute-1.amazonaws.com:5432/dada9tvecoeq0h"
 
 db = SQLAlchemy(app)
 
@@ -16,6 +16,9 @@ class DataBass(db.Model):
     def __init__(self, runtime, keyword):
         self.runtime = runtime
         self.keyword = keyword
+
+def getApp():
+    return app
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/start", methods=["GET", "POST"])
