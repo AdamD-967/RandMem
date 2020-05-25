@@ -5,12 +5,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep, time
 from random import choice
+import os
+from webdriver_manager.chrome import ChromeDriverManager
 
 def getitem(name):
     ts = time()
     opts = Options()
+    opts.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     opts.add_argument("--headless")
-    driver = Chrome(options=opts)
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--no-sandbox")
+    driver = Chrome(ChromeDriverManager().install(), options=opts)
 
     driver.get("https://www.bing.com/")
 
